@@ -32,5 +32,13 @@
 <file name="if_rensyu2.php" server="sv1" local="130797616293680830" remote="130797616200000000" />
 <file name="if_rensyu3.php" server="sv1" local="130797618132802224" remote="130797618000000000" />
 <file name="if_rensyu4.php" server="sv1" local="130797619780602576" remote="130797619800000000" />
+<file name="if_rensyu5.php" server="sv1" local="130797674138710358" remote="130797673800000000" />
 <file name="switch_rensyu2.php" server="sv1" local="130797624319514511" remote="130797624000000000" />
+<file name="if_rensyu6.php" server="sv1" local="130797676307601980" remote="130797676200000000" />
+<file name="if_rensyu7.php" server="sv1" local="130797678305438087" remote="130797678000000000" />
+<file name="if_rensyu8.php" server="sv1" local="130797710890442889" remote="130797711000000000" />
+<file name="switch_rensyu3.php" server="sv1" local="130797712690714008" remote="130797712800000000" />
+<file name="sanko_rensyu1.php" server="sv1" local="130797715522748547" remote="130797715200000000" />
+<file name="if_rensyu9.php" server="sv1" local="130797717925625198" remote="130797717600000000" />
+<file name="loop01.php" server="sv1" local="130797732776504514" remote="130797732600000000" />
 </dwsync>
