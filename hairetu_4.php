@@ -1,0 +1,10 @@
+<?php
+$city[] = "ÂX";
+$city[] = "O‘O";
+$city[] = "”ªŒË";
+$city[4] = "‚Þ‚Â";
+$city[3] = "ŽO‘ò";
+for($i = 0; $i < count($city); $i++){
+	print $city[$i]."<br>";
+}
+?>

@@ -1,0 +1,10 @@
+<?php
+$city[] = "ê¬êX";
+$city[] = "çOëO";
+$city[] = "î™åÀ";
+$city[4] = "ÇﬁÇ¬";
+$city[3] = "éOëÚ";
+foreach($city as $key => $val){
+	print "ÉLÅ[ÅF".$key."=>ìsésñºÅF".$val."<br>";
+}
+?>
