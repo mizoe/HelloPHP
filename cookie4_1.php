@@ -11,10 +11,11 @@
 if($_POST["name"] == "root" && $_POST["pass"] == "1234"){
   $msg = "ログインしました<br>";
   //次回からのID入力を省略するにチェックがあったら、クッキーをセット
-  if($_POST["ck"] == "on"){
+  if(isset($_POST["ck"]) && $_POST["ck"] == "on"){
     //有効期限1時間でクッキーをセット
     setcookie("name", $_POST['name'], time()+60*60);
     setcookie("pass", $_POST['pass'], time()+60*60);
+	setcookie("ck",   $_POST['ck'],   time()+60*60);
   }
 } else{
   $msg = "ユーザー名またはパスワードが間違っています。<br>";
