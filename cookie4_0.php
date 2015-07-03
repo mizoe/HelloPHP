@@ -8,7 +8,13 @@
 パスワード：<input type="password" name="pass"
  value="<?php if(isset($_COOKIE["pass"])) print $_COOKIE["pass"]; ?>">
 <br>
-<input type="checkbox" name="ck" value="on">次回からのID入力を省略
+<input type="checkbox" name="ck" value="on" 
+	<?php
+    	if(isset($_COOKIE["ck"])){
+			print 'checked="checked"';
+		}
+	?>
+>次回からのID入力を省略
 <br>
 <input type="submit" value="送信">
 </body>
