@@ -14,7 +14,9 @@ $price = array();
 
 // ---- モデル(Model) --- csv ファイルを開く
 
-$fp = fopen("sales.csv", "r"); //指定されたファイルをオープンする
+//$fp = fopen("sales.csv", "r"); //指定されたファイルをオープンする
+//$fp = fopen("test1.csv", "r"); //指定されたファイルをオープンする
+$fp = fopen("test2.csv", "r"); //指定されたファイルをオープンする
 
 // ---- モデル(Model) --- 1行ずつ取り出す
 // ---- モデル(Model) --- EOFまで繰り返す
@@ -25,7 +27,6 @@ while(!feof($fp)){ //ファイルの終端に達するまでループする
 }
 
 // ---- コントローラ(Controller) --- 商品ごとの売り上げを計算する
-
 /*
 foreach($rawdata as $line){
 	while (($data = explode(",", $line)) !== FALSE) {
@@ -35,12 +36,17 @@ foreach($rawdata as $line){
     }
 }
 */
-
 foreach($rawdata as $line){
+//	print $line[0] . " " . $line[1] . " " . $line[2] ."<BR>";
 	if(!isset($price[$line[0]])){
 		$price[$line[0]] = 0;
 	}
-	$price[$line[0]] += $line[1];
+//	print $price[$line[0]] . "<BR>";
+	$qty = 1;
+	if(isset($line[2])){
+		$qty = $line[2];
+	}
+	$price[$line[0]] += $line[1] * $qty;
 }
 
 
@@ -52,6 +58,9 @@ foreach($rawdata as $line){
 }
 */
 foreach($price as $k => $v){
+	if($k == ""){
+		continue;
+	}
 	print "商品" . $k . "合計：" . $v;
 	print "<BR>";
 }
@@ -63,3 +72,13 @@ fclose($fp); //ファイルをクローズする
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
