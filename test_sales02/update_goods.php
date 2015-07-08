@@ -9,12 +9,26 @@ $GoodsID = "";
 $Price = "";
 $pdo = new PDO($dnsinfo, $USER, $PW);
 
+//更新処理
+if(isset($_POST['submit'])){
+//	print("<p>更新開始..." . print_r($_POST));
+	try{
+		$sql = "UPDATE goods SET GoodsName=?, Price=? WHERE GoodsID=?";
+//		print("<BR>SQL:" . $sql . "<BR>");
+		$stmt = $pdo->prepare($sql);
+		$stmt->execute(array($_POST['GoodsName'],$_POST['Price'],$_POST['GoodsID']));
+	}catch(Exception $e){
+		$res = $e->getMessage();
+	}
+//	print(" 更新終了</p>");
+}
+
 //任意のレコードの更新ボタン クリック時の処理
 if(isset($_POST['update'])){
 	try{
 		$sql = "SELECT * FROM goods WHERE GoodsID=?";
 		$stmt = $pdo->prepare($sql);
-		$stmt->execute(array($_POST['id']));
+		$stmt->execute(array($_POST['GoodsID']));
 		$row = $stmt->fetch(PDO::FETCH_ASSOC);
 		$GoodsName	= $row['GoodsName'];
 		$GoodsID 	= $row['GoodsID'];
@@ -37,7 +51,7 @@ try{
 <td>{$row['GoodsName']} </td>
 <td>{$row['Price']}		</td>
 <td><form method="post" action="">
-<input type="hidden" name="id" 		value="{$row['GoodsID']}">
+<input type="hidden" name="GoodsID"	value="{$row['GoodsID']}">
 <input type="submit" name="update" 	value="更新">
 </form>
 </td>
@@ -67,6 +81,7 @@ END_OF_TR;
 <?php if(isset($_POST['update'])){ ?>
 <form action="" method="post">
 <p>GoodsID: <?php echo $GoodsID; ?></p>
+<input type="hidden" name="GoodsID" value="<?php echo $GoodsID; ?>">
 <label>GoodsName<input type="text" name="GoodsName" size="20" 
 	value="<?php echo $GoodsName; ?>" required></label>
 <label>Price<input type="text" name="Price" size="6" 
