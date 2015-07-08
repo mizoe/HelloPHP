@@ -9,6 +9,17 @@ $GoodsID = "";
 $Price = "";
 $pdo = new PDO($dnsinfo, $USER, $PW);
 
+//削除処理
+if(isset($_POST['delete'])){
+	try{
+		$sql = "DELETE from goods WHERE GoodsID=?";
+		$stmt = $pdo->prepare($sql);
+		$stmt->execute(array($_POST['GoodsID']));
+	}catch(Exception $e){
+		$res = $e->getMessage();
+	}
+}
+
 //更新処理
 if(isset($_POST['submit'])){
 //	print("<p>更新開始..." . print_r($_POST));
@@ -43,7 +54,7 @@ try{
 	$sql = "SELECT * from goods";
 	$stmt = $pdo->prepare($sql);
 	if($stmt->execute(null)){
-		$res = "<table border=1><tr><th>GoodsID</th><th>GoodsName</th><th>Price</th><th> </th></tr>";
+		$res = "<table border=1><tr><th>GoodsID</th><th>GoodsName</th><th>Price</th><th> </th><th> </th></tr>";
 		while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 			$res .= <<<END_OF_TR
 <tr>
@@ -53,6 +64,11 @@ try{
 <td><form method="post" action="">
 <input type="hidden" name="GoodsID"	value="{$row['GoodsID']}">
 <input type="submit" name="update" 	value="更新">
+</form>
+</td>
+<td><form method="post" action="">
+<input type="hidden" name="GoodsID"	value="{$row['GoodsID']}">
+<input type="submit" name="delete" 	value="削除" onClick="return CheckDelete({$row['GoodsID']})">
 </form>
 </td>
 </tr>
@@ -73,6 +89,11 @@ END_OF_TR;
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>始めようphp</title>
+<script>
+function CheckDelete(id){
+	return confirm(id + "を削除してもよろしいですか？");
+}
+</script>
 </head>
 
 <body>
