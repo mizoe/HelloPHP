@@ -5,7 +5,7 @@ class DBGoods extends DB{
 	
 	public function InsertGoods(){
 		$sql = "INSERT INTO goods VALUES(?,?,?)";
-		parent::$db->executeSQL(
+		parent::executeSQL(
 			$sql,
 			array(	$_POST['GoodsID'],
 					$_POST['GoodsName'],
@@ -16,7 +16,7 @@ class DBGoods extends DB{
 	
 	public function SelectGoodsAll(){
 		$sql = "SELECT * FROM goods";
-		$res = $db->executeSQL($sql, null);
+		$res = parent::executeSQL($sql, null);
 		$recordlist = "<table border=1><tr><th>GoodsID</th><th>GoodsName</th><th>Price</th></tr>";
 		while($row = $res->fetch(PDO::FETCH_ASSOC)){
 			$recordlist .= <<<END_OF_TR
